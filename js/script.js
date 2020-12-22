@@ -14,6 +14,8 @@ var numeriInput = [];
 var n = 1;
 // contatore bombe
 var k = 0;
+// contatore input utente
+var p = 0;
 // NUMERI BOMBE
 for (var i = 0; i < 16; i++) {
   numero = generaRandom(1, 100);
@@ -27,10 +29,18 @@ for (var i = 0; i < 16; i++) {
 numeriBombe.sort();
 console.log(numeriBombe);
 // NUMERI INPUT UTENTE
-// for (var i = 0; i < 84; i++) {
-//   userInput = parseInt(prompt('Inserisci numero'));
-//   numeriInput.push(userInput);
-// }
+for (var q = 0; q < 84; q++) {
+  userInput = parseInt(prompt('Inserisci numero'));
+  if (numeriBombe.includes(userInput) == false) {
+    numeriInput.push(userInput);
+  }
+  else {
+    document.getElementById('esito').innerHTML = 'Hai perso con ' + q + ' tentativi';
+    break;
+  }
+}
+numeriInput.sort();
+console.log(numeriInput);
 // MATRICE CAMPO
 for (var z = 0; z < 10; z++) {
   document.getElementById('campo').innerHTML += '<br>';
@@ -39,13 +49,16 @@ for (var z = 0; z < 10; z++) {
       k++;
       document.getElementById('campo').innerHTML += '<span>💣</span>';
     }
+    else if (n == numeriInput[p]) {
+      p++;
+      document.getElementById('campo').innerHTML += '<span>😀</span>';
+    }
     else {
       document.getElementById('campo').innerHTML += '<span>⬜</span>';
     }
     n++;
     }
 }
-console.log(n);
 // ****FUNZIONI****
 
 function generaRandom(min, max) {
