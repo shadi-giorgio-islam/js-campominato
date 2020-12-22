@@ -26,7 +26,9 @@ for (var i = 0; i < 16; i++) {
     i--;
   }
 }
-numeriBombe.sort();
+numeriBombe.sort(function(a, b) {
+  return a - b;
+});
 console.log(numeriBombe);
 // NUMERI INPUT UTENTE
 for (var q = 0; q < 84; q++) {
@@ -39,7 +41,9 @@ for (var q = 0; q < 84; q++) {
     break;
   }
 }
-numeriInput.sort();
+numeriInput.sort(function(a, b) {
+  return a - b;
+});
 console.log(numeriInput);
 // MATRICE CAMPO
 for (var z = 0; z < 10; z++) {
