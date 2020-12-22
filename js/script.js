@@ -16,6 +16,9 @@ var n = 1;
 var k = 0;
 // contatore input utente
 var p = 0;
+// SELEZIONE DIFFICOLTA
+var difficolta = parseInt(prompt('Inserisci 0 per difficoltà 0, 1 per difficoltà 1, 2 per difficoltà 2'));
+document.getElementById('difficolta').innerHTML = 'HAI SCELTO DIFFICOLTA ' + difficolta; 
 // NUMERI BOMBE
 for (var i = 0; i < 16; i++) {
   numero = generaRandom(1, 100);
@@ -46,23 +49,66 @@ numeriInput.sort(function(a, b) {
 });
 console.log(numeriInput);
 // MATRICE CAMPO
-for (var z = 0; z < 10; z++) {
-  document.getElementById('campo').innerHTML += '<br>';
-  for (var j = 0; j < 10; j++) {
-    if (n == numeriBombe[k]) {
-      k++;
-      document.getElementById('campo').innerHTML += '<span>💣</span>';
+switch (difficolta) {
+  case 0:
+    for (var z = 0; z < 10; z++) {
+      document.getElementById('campo').innerHTML += '<br>';
+      for (var j = 0; j < 10; j++) {
+        if (n == numeriBombe[k]) {
+          k++;
+          document.getElementById('campo').innerHTML += '<span>💣</span>';
+        }
+        else if (n == numeriInput[p]) {
+          p++;
+          document.getElementById('campo').innerHTML += '<span>😀</span>';
+        }
+        else {
+          document.getElementById('campo').innerHTML += '<span>⬜</span>';
+        }
+        n++;
+        }
     }
-    else if (n == numeriInput[p]) {
-      p++;
-      document.getElementById('campo').innerHTML += '<span>😀</span>';
-    }
-    else {
-      document.getElementById('campo').innerHTML += '<span>⬜</span>';
-    }
-    n++;
-    }
+    break;
+    case 1:
+      for (var z = 0; z < 8; z++) {
+        document.getElementById('campo').innerHTML += '<br>';
+        for (var j = 0; j < 10; j++) {
+          if (n == numeriBombe[k]) {
+            k++;
+            document.getElementById('campo').innerHTML += '<span>💣</span>';
+          }
+          else if (n == numeriInput[p]) {
+            p++;
+            document.getElementById('campo').innerHTML += '<span>😀</span>';
+          }
+          else {
+            document.getElementById('campo').innerHTML += '<span>⬜</span>';
+          }
+          n++;
+          }
+      }
+      break;
+      case 2:
+        for (var z = 0; z < 5; z++) {
+          document.getElementById('campo').innerHTML += '<br>';
+          for (var j = 0; j < 10; j++) {
+            if (n == numeriBombe[k]) {
+              k++;
+              document.getElementById('campo').innerHTML += '<span>💣</span>';
+            }
+            else if (n == numeriInput[p]) {
+              p++;
+              document.getElementById('campo').innerHTML += '<span>😀</span>';
+            }
+            else {
+              document.getElementById('campo').innerHTML += '<span>⬜</span>';
+            }
+            n++;
+            }
+        }
+        break;
 }
+
 // ****FUNZIONI****
 
 function generaRandom(min, max) {
